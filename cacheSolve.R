@@ -1,15 +1,20 @@
-cacheSolve <- function (x) {
-    ## if inverse matrix is cached, return the value from cached
-    m <- x$get_inv_matrix()
+libaray( matlib)
+
+cacheSolve <- function(x, ...) {
+    
+    m <- x$getinverse()  #retrive the inverse matrix of x
+    
     if (!is.null(m)) {
-        message("getting cached data")
+        message('Getting the cached data')
         return(m)
     }
-    ## get the data
-    data <- x$get()
-    ## calculate the inversion
-    m <- solve(data)
-    ## store the inverted values
-    x$set_inv_matrix(m)
-    m
+    
+    #if inverse matrix is not in cache, m, then calculate the inverse matrix
+    message('No cache')
+    input <- x$get()
+    #m <- solve(input)
+    m <- inv(a)
+    x$setinverse(m)  #store the calculated inverse matrix to cache, m
+    
+    return (m)
 }

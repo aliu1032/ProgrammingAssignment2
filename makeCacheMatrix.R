@@ -1,14 +1,25 @@
 makeCacheMatrix <- function(x = matrix()) {
     m <- NULL
-    ## set value
+    
+    # function 1 in the list: set the value of the matrix. 
+    # use <<- to set it to the object in an environment different from the local environment
     set <- function(y) {
-        x <<-y
+        x <<- y 
         m <<- NULL
     }
-    get <- function () x
-    ## set inverse matrix value
-    set_inv_matrix <- function(matrix) m <<- inv_matrix
-    get_inv_matrix <- function() m
     
-    return list(set=set, get=get, setmatrix = setmatrix, getmatrix = getmatrix)
+    # function 2 in the list: the get function: return matrix given to the parameter
+    get <- function() x 
+    
+    # function 3 in the list: assign the given inverse of matrix to variable result
+    setinverse <- function(inverse) m <<- inverse
+    
+    # function 4 in the list: return the inverse of matrix from cache
+    getinverse <- function() m
+    
+    #return a list of 4 differnt functions
+    list(set = set,
+         get = get, 
+         setinverse = setinverse,
+         getinverse = getinverse)
 }
